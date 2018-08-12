@@ -1,0 +1,52 @@
+<body style="overflow:hidden;margin:0px;">
+	<script> 
+		var ssc_url = "https://t706.com/Lottery/history/sscKs.php?d=";
+		var getCurrentDate = function () {
+			var myDate = new Date();
+			//myDate.getYear();        //获取当前年份(2位)
+			var year = myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+			var month = myDate.getMonth() + 1;       //获取当前月份(0-11,0代表1月)
+			var date = myDate.getDate();        //获取当前日(1-31)
+			//myDate.getDay();         //获取当前星期X(0-6,0代表星期天)
+			//myDate.getTime();        //获取当前时间(从1970.1.1开始的毫秒数)
+			//myDate.getHours();       //获取当前小时数(0-23)
+			//myDate.getMinutes();     //获取当前分钟数(0-59)
+			//myDate.getSeconds();     //获取当前秒数(0-59)
+			//myDate.getMilliseconds();    //获取当前毫秒数(0-999)
+			//myDate.toLocaleDateString();     //获取当前日期
+			//var mytime=myDate.toLocaleTimeString();     //获取当前时间
+			//myDate.toLocaleString( );        //获取日期与时间
+			return year + "-" + month + "-" + date;
+		}
+
+		var createIframe = function () {
+			var current_date = getCurrentDate();
+			var url = ssc_url + current_date;
+			var iframe = document.createElement("iframe");
+			iframe.name = "ssc_iframe";
+			iframe.id = "ssc_iframe";
+			iframe.src = url;
+			iframe.width = "100%";
+			iframe.height = window.innerHeight;
+			//iframe.scrolling="no";
+			iframe.style = "border:0px;";
+			document.body.appendChild(iframe);
+		}
+
+		createIframe();
+
+		var reloadIframe = function () {
+			var current_date = getCurrentDate();
+			var url = ssc_url + current_date;
+			window.document.getElementById("ssc_iframe").src = url;
+			//window.document.getElementsByName("ssc_iframe")[0].src = url;
+		}
+
+		setInterval(function () {
+			reloadIframe();
+			//window.location.reload();
+		}, 30 * 1000);
+
+	</script>
+
+</body>
